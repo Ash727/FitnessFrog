@@ -52,21 +52,20 @@ namespace Treehouse.FitnessFrog.Controllers
         // similar to spark Post("uri/somthin",(req,res ) )
         // This weill run  when in the add view and post request sent 
         [ActionName("Add"), HttpPost]
-        public ActionResult AddPost( string date, string activityId, string duration, 
-            string intensity, string exclude, string notes )
-        {   //Entry entry = new Entry();
-            //string date0 = (Request.Params.Get("Date"));
-            //// Would give us the value of Date field 
-            // string date1 = Request.Form["Date"];
-            // ActivityID
-            // Duration 
+        public ActionResult AddPost( DateTime? date, int? activityId, double? duration, 
+            Entry.IntensityLevel? intensity, bool? exclude, string notes )
+        {    
+            DateTime dateValue;
+            //DateTime.TryParse(date, out dateValue);
 
-            ViewBag.Date = date;
-            ViewBag.ActivityId = activityId;
-            ViewBag.Duration = duration;
-            ViewBag.Intensity = intensity;
-            ViewBag.Exculde = exclude;
-            ViewBag.Notes = notes;
+            // To get information from the forms we could use 
+            //ViewBag.Date = date;
+            // or 
+           // ViewBag.Date = ModelState["Date"].Value.AttemptedValue;
+           // ViewBag.ActivityId = ModelState["ActivityId"].Value.AttemptedValue; ;
+            // But because we use using Html.beginForm() in add 
+            // this automatically does it for us cause it uses model state 
+
 
             return View();
         }
