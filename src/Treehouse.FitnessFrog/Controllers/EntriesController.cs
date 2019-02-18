@@ -41,8 +41,36 @@ namespace Treehouse.FitnessFrog.Controllers
 
         public ActionResult Add()
         {
+            // Controllers have a request property that you can get information from Http method 
+            //if (Request.HttpMethod == "POST") {
+            //}
+            // or see AddPost request method below 
             return View();
         }
+
+        // here were saying if we are in the add view and recieve a httpPost request runthis method 
+        // similar to spark Post("uri/somthin",(req,res ) )
+        // This weill run  when in the add view and post request sent 
+        [ActionName("Add"), HttpPost]
+        public ActionResult AddPost( string date, string activityId, string duration, 
+            string intensity, string exclude, string notes )
+        {   //Entry entry = new Entry();
+            //string date0 = (Request.Params.Get("Date"));
+            //// Would give us the value of Date field 
+            // string date1 = Request.Form["Date"];
+            // ActivityID
+            // Duration 
+
+            ViewBag.Date = date;
+            ViewBag.ActivityId = activityId;
+            ViewBag.Duration = duration;
+            ViewBag.Intensity = intensity;
+            ViewBag.Exculde = exclude;
+            ViewBag.Notes = notes;
+
+            return View();
+        }
+
 
         public ActionResult Edit(int? id)
         {
